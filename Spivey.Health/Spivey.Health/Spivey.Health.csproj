@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Spivey Health</Title>
+    <Description>Efficiently store and work with health data. For example measurements from Apple Health export files and analyze the data in a PC application.</Description>
+    <Copyright>Copyright © Michael Spivey 2023</Copyright>
+    <PackageProjectUrl>https://github.com/spiveyworks/Spivey.Health</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/spiveyworks/Spivey.Health</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>health;data;body measurements;nutrition;heart;sleep</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
