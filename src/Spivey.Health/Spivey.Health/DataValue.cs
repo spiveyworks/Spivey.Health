@@ -27,6 +27,6 @@ namespace Spivey.Health
     public class DataValue<T>
     {
         public DateTime Date { get; set; }
-        public T Value { get; set; }
+        public T? Value { get; set; }
     }
 }

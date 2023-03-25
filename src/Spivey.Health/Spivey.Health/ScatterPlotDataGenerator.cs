@@ -1,9 +1,9 @@
 ﻿namespace Spivey.Health
 {
-    public static class ScatterPlotDataGenerator
+    public static class ScatterPlotDataGenerator<T>
     {
         //write a unit test for this method.
-        public static ScatterPlotData AggregateByDay(DateTime startDateRange,
+        public static ScatterPlotData<T> AggregateByDay(DateTime startDateRange,
                                               DateTime endDateRange,
                                               string labelX,
                                               DataList<double> dataListX,
@@ -17,7 +17,7 @@
             {
                 Values = AggregateByDayStrategy(aggregateOperator, dataListX, dataListY, startDateRange, (int)numberOfDaysBetweenStartAndEnd)
             };
-            return new ScatterPlotData()
+            return new ScatterPlotData<T>()
             {
                 Labels = new string[] {labelX, labelY },
                 DataSets = new ScatterPlotDataSet[] { dataSet }
@@ -64,6 +64,7 @@
 
                 values.Add(new ScatterPlotDataPoint()
                 {
+                    Date = date,
                     X = valX,
                     Y = valY
                 });
@@ -90,6 +91,7 @@
 
                 values.Add(new ScatterPlotDataPoint()
                 {
+                    Date = date,
                     X = valX,
                     Y = valY
                 });
@@ -116,6 +118,7 @@
 
                 values.Add(new ScatterPlotDataPoint()
                 {
+                    Date = date,
                     X = valX,
                     Y = valY
                 });
@@ -142,6 +145,7 @@
 
                 values.Add(new ScatterPlotDataPoint()
                 {
+                    Date = date,
                     X = valX,
                     Y = valY
                 });

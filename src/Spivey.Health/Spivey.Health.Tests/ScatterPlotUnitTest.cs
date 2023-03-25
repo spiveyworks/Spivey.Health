@@ -35,7 +35,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Min);
+            var result = ScatterPlotDataGenerator<double>.AggregateByDay(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Min);
 
             // Assert
             Assert.IsNotNull(result);
@@ -47,10 +47,13 @@ namespace Spivey.Health.Tests
             var dataSet = result.DataSets[0];
             Assert.AreEqual(3, dataSet.Values.Count());
 
+            Assert.AreEqual(new DateTime(2023, 3, 20), dataSet.Values[0].Date);
             Assert.AreEqual(1, dataSet.Values[0].X);
             Assert.AreEqual(10, dataSet.Values[0].Y);
+            Assert.AreEqual(new DateTime(2023, 3, 21), dataSet.Values[1].Date);
             Assert.AreEqual(2, dataSet.Values[1].X);
             Assert.AreEqual(20, dataSet.Values[1].Y);
+            Assert.AreEqual(new DateTime(2023, 3, 22), dataSet.Values[2].Date);
             Assert.AreEqual(5, dataSet.Values[2].X);
             Assert.AreEqual(50, dataSet.Values[2].Y);
         }
@@ -87,7 +90,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Max);
+            var result = ScatterPlotDataGenerator<double>.AggregateByDay(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Max);
 
             // Assert
             Assert.IsNotNull(result);
@@ -99,10 +102,13 @@ namespace Spivey.Health.Tests
             var dataSet = result.DataSets[0];
             Assert.AreEqual(3, dataSet.Values.Count());
 
+            Assert.AreEqual(new DateTime(2023, 3, 20), dataSet.Values[0].Date);
             Assert.AreEqual(1, dataSet.Values[0].X);
             Assert.AreEqual(10, dataSet.Values[0].Y);
+            Assert.AreEqual(new DateTime(2023, 3, 21), dataSet.Values[1].Date);
             Assert.AreEqual(4, dataSet.Values[1].X);
             Assert.AreEqual(40, dataSet.Values[1].Y);
+            Assert.AreEqual(new DateTime(2023, 3, 22), dataSet.Values[2].Date);
             Assert.AreEqual(5, dataSet.Values[2].X);
             Assert.AreEqual(50, dataSet.Values[2].Y);
         }
@@ -139,7 +145,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Sum);
+            var result = ScatterPlotDataGenerator<double>.AggregateByDay(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Sum);
 
             // Assert
             Assert.IsNotNull(result);
@@ -151,10 +157,13 @@ namespace Spivey.Health.Tests
             var dataSet = result.DataSets[0];
             Assert.AreEqual(3, dataSet.Values.Count());
 
+            Assert.AreEqual(new DateTime(2023, 3, 20), dataSet.Values[0].Date);
             Assert.AreEqual(1, dataSet.Values[0].X);
             Assert.AreEqual(10, dataSet.Values[0].Y);
+            Assert.AreEqual(new DateTime(2023, 3, 21), dataSet.Values[1].Date);
             Assert.AreEqual(9, dataSet.Values[1].X);
             Assert.AreEqual(90, dataSet.Values[1].Y);
+            Assert.AreEqual(new DateTime(2023, 3, 22), dataSet.Values[2].Date);
             Assert.AreEqual(5, dataSet.Values[2].X);
             Assert.AreEqual(50, dataSet.Values[2].Y);
         }
@@ -191,7 +200,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Average);
+            var result = ScatterPlotDataGenerator<double>.AggregateByDay(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Average);
 
             // Assert
             Assert.IsNotNull(result);
@@ -203,10 +212,13 @@ namespace Spivey.Health.Tests
             var dataSet = result.DataSets[0];
             Assert.AreEqual(3, dataSet.Values.Count());
 
+            Assert.AreEqual(new DateTime(2023, 3, 20), dataSet.Values[0].Date);
             Assert.AreEqual(1, dataSet.Values[0].X);
             Assert.AreEqual(10, dataSet.Values[0].Y);
+            Assert.AreEqual(new DateTime(2023, 3, 21), dataSet.Values[1].Date);
             Assert.AreEqual(3, dataSet.Values[1].X);
             Assert.AreEqual(30, dataSet.Values[1].Y);
+            Assert.AreEqual(new DateTime(2023, 3, 22), dataSet.Values[2].Date);
             Assert.AreEqual(5, dataSet.Values[2].X);
             Assert.AreEqual(50, dataSet.Values[2].Y);
         }
