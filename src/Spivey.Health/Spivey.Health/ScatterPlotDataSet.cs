@@ -26,7 +26,8 @@ namespace Spivey.Health
 {
     public class ScatterPlotDataSet
     {
-        public string? Type { get; set; }
+        public string? TypeX { get; set; }
+        public string? TypeY { get; set; }
         public ScatterPlotDataPoint[] Values { get; set; }
 
         public ScatterPlotDataSet() 

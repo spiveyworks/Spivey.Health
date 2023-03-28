@@ -35,6 +35,8 @@ namespace Spivey.Health.Tests
             DateTime endDate = new DateTime(2023, 4, 1);
             string labelX = "Label X";
             string labelY = "Label Y";
+            string typeX = "Type X";
+            string typeY = "Type Y";
             var dataListX = new DataList<double>
             {
                 Values = new DataValue<double>[]
@@ -59,7 +61,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Sum, AggregateOperator.Max);
+            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum, AggregateOperator.Max);
 
             // Assert
             Assert.IsNotNull(result);
@@ -67,6 +69,8 @@ namespace Spivey.Health.Tests
             Assert.AreEqual(labelX, result.Labels[0]);
             Assert.AreEqual(labelY, result.Labels[1]);
             Assert.AreEqual(1, result.DataSets.Length);
+            Assert.AreEqual(typeX, result.DataSets[0].TypeX);
+            Assert.AreEqual(typeY, result.DataSets[0].TypeY);
 
             var dataSet = result.DataSets[0];
             Assert.AreEqual(2, dataSet.Values.Count());
@@ -88,6 +92,8 @@ namespace Spivey.Health.Tests
             DateTime endDate = new DateTime(2023, 4, 1);
             string labelX = "Label X";
             string labelY = "Label Y";
+            string typeX = "Type X";
+            string typeY = "Type Y";
             var dataListX = new DataList<double>
             {
                 Values = new DataValue<double>[]
@@ -112,7 +118,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Sum, AggregateOperator.Min);
+            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum, AggregateOperator.Min);
 
             // Assert
             Assert.IsNotNull(result);
@@ -120,6 +126,8 @@ namespace Spivey.Health.Tests
             Assert.AreEqual(labelX, result.Labels[0]);
             Assert.AreEqual(labelY, result.Labels[1]);
             Assert.AreEqual(1, result.DataSets.Length);
+            Assert.AreEqual(typeX, result.DataSets[0].TypeX);
+            Assert.AreEqual(typeY, result.DataSets[0].TypeY);
 
             var dataSet = result.DataSets[0];
             Assert.AreEqual(2, dataSet.Values.Count());
@@ -141,6 +149,8 @@ namespace Spivey.Health.Tests
             DateTime endDate = new DateTime(2023, 4, 1);
             string labelX = "Label X";
             string labelY = "Label Y";
+            string typeX = "Type X";
+            string typeY = "Type Y";
             var dataListX = new DataList<double>
             {
                 Values = new DataValue<double>[]
@@ -165,7 +175,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Sum, AggregateOperator.Sum);
+            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum, AggregateOperator.Sum);
 
             // Assert
             Assert.IsNotNull(result);
@@ -173,6 +183,8 @@ namespace Spivey.Health.Tests
             Assert.AreEqual(labelX, result.Labels[0]);
             Assert.AreEqual(labelY, result.Labels[1]);
             Assert.AreEqual(1, result.DataSets.Length);
+            Assert.AreEqual(typeX, result.DataSets[0].TypeX);
+            Assert.AreEqual(typeY, result.DataSets[0].TypeY);
 
             var dataSet = result.DataSets[0];
             Assert.AreEqual(2, dataSet.Values.Count());
@@ -194,6 +206,8 @@ namespace Spivey.Health.Tests
             DateTime endDate = new DateTime(2023, 4, 1);
             string labelX = "Label X";
             string labelY = "Label Y";
+            string typeX = "Type X";
+            string typeY = "Type Y";
             var dataListX = new DataList<double>
             {
                 Values = new DataValue<double>[]
@@ -218,7 +232,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, dataListX, labelY, dataListY, AggregateOperator.Sum, AggregateOperator.Average);
+            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum, AggregateOperator.Average);
 
             // Assert
             Assert.IsNotNull(result);
@@ -226,6 +240,8 @@ namespace Spivey.Health.Tests
             Assert.AreEqual(labelX, result.Labels[0]);
             Assert.AreEqual(labelY, result.Labels[1]);
             Assert.AreEqual(1, result.DataSets.Length);
+            Assert.AreEqual(typeX, result.DataSets[0].TypeX);
+            Assert.AreEqual(typeY, result.DataSets[0].TypeY);
 
             var dataSet = result.DataSets[0];
             Assert.AreEqual(2, dataSet.Values.Count());

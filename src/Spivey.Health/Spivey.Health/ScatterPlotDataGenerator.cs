@@ -37,8 +37,10 @@ namespace Spivey.Health
         public static ScatterPlotData<T> AggregateByDay(DateTime startDateRange,
                                               DateTime endDateRange,
                                               string labelX,
+                                              string typeX,
                                               DataList<double> dataListX,
                                               string labelY,
+                                              string typeY,
                                               DataList<double> dataListY,
                                               AggregateOperator aggregateOperator)
         {
@@ -66,6 +68,8 @@ namespace Spivey.Health
             }
             var dataSet = new ScatterPlotDataSet()
             {
+                TypeX = typeX,
+                TypeY = typeY,
                 Values = values.ToArray()
             };
             return new ScatterPlotData<T>()
@@ -78,8 +82,10 @@ namespace Spivey.Health
         public static ScatterPlotData<T> AggregateByMonth(DateTime startDateRange,
                                               DateTime endDateRange,
                                               string labelX,
+                                              string typeX,
                                               DataList<double> dataListX,
                                               string labelY,
+                                              string typeY,
                                               DataList<double> dataListY,
                                               AggregateOperator dayAggregateOperator,
                                               AggregateOperator monthAggregateOperator)
@@ -128,6 +134,8 @@ namespace Spivey.Health
             }
             var dataSet = new ScatterPlotDataSet()
             {
+                TypeX = typeX,
+                TypeY = typeY,
                 Values = monthValues.ToArray()
             };
             return new ScatterPlotData<T>()
