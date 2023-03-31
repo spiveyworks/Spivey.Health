@@ -175,7 +175,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum, AggregateOperator.Sum);
+            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, dayAggregateOperator: AggregateOperator.Sum, monthAggregateOperator: AggregateOperator.Sum);
 
             // Assert
             Assert.IsNotNull(result);
@@ -232,7 +232,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum, AggregateOperator.Average);
+            var result = ScatterPlotDataGenerator<double>.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, dayAggregateOperator: AggregateOperator.Sum, monthAggregateOperator: AggregateOperator.Average);
 
             // Assert
             Assert.IsNotNull(result);
