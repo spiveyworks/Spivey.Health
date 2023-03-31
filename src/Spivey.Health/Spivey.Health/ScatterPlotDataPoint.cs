@@ -24,9 +24,10 @@
 
 namespace Spivey.Health
 {
-    public class DataValue<T>
+    public class ScatterPlotDataPoint
     {
         public DateTime Date { get; set; }
-        public T? Value { get; set; }
+        public double? X { get; set; }
+        public double? Y { get; set; }
     }
 }
