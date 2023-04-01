@@ -2,9 +2,6 @@
 A c# package to efficiently store health data imported from different sources, so that you can analyze it. For example, heart, nutrition and other measurements from Apple Health export files.
 
 ## Related Packages
-<<<<<<< Updated upstream
-* [AppleHealthFileReader](https://github.com/spiveyworks/AppleHealthFileReader) can be used to read an Apple Health export zip file that contains all of your health data in XML format. That data can then be transformed into normalized Spivey.Health DataLists.
-=======
 * [AppleHealthFileReader](https://github.com/spiveyworks/AppleHealthFileReader) can be used to read an Apple Health export zip file that contains all of your health data in XML format. That data can then be transformed into normalized Spivey.Health DataLists.
 
 ## Usage
@@ -90,4 +87,3 @@ Result
 |------------|---|----|
 | 3/1/2023   | 5 | 50 |
 | 4/1/2023   | 6 | 51 |
->>>>>>> Stashed changes

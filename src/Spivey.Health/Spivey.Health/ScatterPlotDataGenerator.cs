@@ -239,10 +239,10 @@ namespace Spivey.Health
                 var monthDate = startDateRange.AddMonths(m);
 
                 //get the values for the month from each data list.
-                var valX = DoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month && i.X != null)
-                                                    .Select(i => i.X.GetValueOrDefault(0)));
-                var valY = DoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month && i.Y != null)
-                                                    .Select(i => i.Y.GetValueOrDefault(0)));
+                var valX = NullableDoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month && i.Y != null)
+                                                    .Select(i => i.X ?? null));
+                var valY = NullableDoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month && i.Y != null)
+                                                    .Select(i => i.Y ?? null));
 
                 monthValues.Add(new ScatterPlotDataPoint()
                 {
