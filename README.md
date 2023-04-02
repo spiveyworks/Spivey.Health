@@ -87,3 +87,11 @@ Result
 |------------|---|----|
 | 3/1/2023   | 5 | 50 |
 | 4/1/2023   | 6 | 51 |
+
+### Calculate Pearson Correlation
+
+```csharp
+var x = new double[] { 3, 4, 5, 8, 1, 0 };
+var y = new double[] { 1, 1.1, 1.2, 1.4, 0.9, 0.8 };
+var result = PearsonCorrelation.Calculate(x, y); //0.99620622877904863
+```
