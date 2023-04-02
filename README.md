@@ -36,7 +36,7 @@ var dataListY = new DataList<double?>
     }
 };
 
-var result = ScatterPlotDataGenerator<double?>.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Min);
+var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Min);
 ```
 
 Result
@@ -78,7 +78,7 @@ var dataListY = new DataList<double?>
     }
 };
 
-var result = ScatterPlotDataGenerator<double?>.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, dayAggregateOperator: AggregateOperator.Sum, monthAggregateOperator: AggregateOperator.Average);
+var result = ScatterPlotDataGenerator.AggregateByMonth(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, dayAggregateOperator: AggregateOperator.Sum, monthAggregateOperator: AggregateOperator.Average);
 ```
 
 Result
