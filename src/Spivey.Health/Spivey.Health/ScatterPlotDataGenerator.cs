@@ -24,7 +24,7 @@
 
 namespace Spivey.Health
 {
-    public static class ScatterPlotDataGenerator<T>
+    public static class ScatterPlotDataGenerator
     {
         private static Dictionary<AggregateOperator, Func<IEnumerable<double>, double>> DoubleAggregators = new Dictionary<AggregateOperator, Func<IEnumerable<double>, double>>()
             {
@@ -42,7 +42,7 @@ namespace Spivey.Health
                 { AggregateOperator.Max, values => values.Max() },
             };
 
-        public static ScatterPlotData<T> AggregateByDay(DateTime startDateRange,
+        public static ScatterPlotData<double> AggregateByDay(DateTime startDateRange,
                                               DateTime endDateRange,
                                               string labelX,
                                               string typeX,
@@ -80,14 +80,14 @@ namespace Spivey.Health
                 TypeY = typeY,
                 Values = values.ToArray()
             };
-            return new ScatterPlotData<T>()
+            return new ScatterPlotData<double>()
             {
                 Labels = new string[] { labelX, labelY },
                 DataSets = new ScatterPlotDataSet[] { dataSet }
             };
         }
 
-        public static ScatterPlotData<T> AggregateByDay(DateTime startDateRange,
+        public static ScatterPlotData<double?> AggregateByDay(DateTime startDateRange,
                                               DateTime endDateRange,
                                               string labelX,
                                               string typeX,
@@ -125,14 +125,14 @@ namespace Spivey.Health
                 TypeY = typeY,
                 Values = values.ToArray()
             };
-            return new ScatterPlotData<T>()
+            return new ScatterPlotData<double?>()
             {
                 Labels = new string[] { labelX, labelY },
                 DataSets = new ScatterPlotDataSet[] { dataSet }
             };
         }
 
-        public static ScatterPlotData<T> AggregateByMonth(DateTime startDateRange,
+        public static ScatterPlotData<double> AggregateByMonth(DateTime startDateRange,
                                               DateTime endDateRange,
                                               string labelX,
                                               string typeX,
@@ -191,14 +191,14 @@ namespace Spivey.Health
                 TypeY = typeY,
                 Values = monthValues.ToArray()
             };
-            return new ScatterPlotData<T>()
+            return new ScatterPlotData<double>()
             {
                 Labels = new string[] { labelX, labelY },
                 DataSets = new ScatterPlotDataSet[] { dataSet }
             };
         }
 
-        public static ScatterPlotData<T> AggregateByMonth(DateTime startDateRange,
+        public static ScatterPlotData<double?> AggregateByMonth(DateTime startDateRange,
                                               DateTime endDateRange,
                                               string labelX,
                                               string typeX,
@@ -239,10 +239,10 @@ namespace Spivey.Health
                 var monthDate = startDateRange.AddMonths(m);
 
                 //get the values for the month from each data list.
-                var valX = NullableDoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month && i.Y != null)
-                                                    .Select(i => i.X ?? null));
+                var valX = NullableDoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month && i.X != null)
+                                                    .Select(i => i.X));
                 var valY = NullableDoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month && i.Y != null)
-                                                    .Select(i => i.Y ?? null));
+                                                    .Select(i => i.Y));
 
                 monthValues.Add(new ScatterPlotDataPoint()
                 {
@@ -257,7 +257,7 @@ namespace Spivey.Health
                 TypeY = typeY,
                 Values = monthValues.ToArray()
             };
-            return new ScatterPlotData<T>()
+            return new ScatterPlotData<double?>()
             {
                 Labels = new string[] { labelX, labelY },
                 DataSets = new ScatterPlotDataSet[] { dataSet }

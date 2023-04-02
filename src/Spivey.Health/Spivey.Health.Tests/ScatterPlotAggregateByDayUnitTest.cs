@@ -63,7 +63,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Min);
+            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Min);
 
             // Assert
             Assert.IsNotNull(result);
@@ -122,7 +122,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Max);
+            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Max);
 
             // Assert
             Assert.IsNotNull(result);
@@ -181,7 +181,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum);
+            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum);
 
             // Assert
             Assert.IsNotNull(result);
@@ -240,7 +240,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double>.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Average);
+            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Average);
 
             // Assert
             Assert.IsNotNull(result);
@@ -301,7 +301,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double?>.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Min);
+            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Min);
 
             // Assert
             Assert.IsNotNull(result);
@@ -359,7 +359,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double?>.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Max);
+            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Max);
 
             // Assert
             Assert.IsNotNull(result);
@@ -417,7 +417,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double?>.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum);
+            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Sum);
 
             // Assert
             Assert.IsNotNull(result);
@@ -475,7 +475,7 @@ namespace Spivey.Health.Tests
             };
 
             // Act
-            var result = ScatterPlotDataGenerator<double?>.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Average);
+            var result = ScatterPlotDataGenerator.AggregateByDay(startDate, endDate, labelX, typeX, dataListX, labelY, typeY, dataListY, AggregateOperator.Average);
 
             // Assert
             Assert.IsNotNull(result);
