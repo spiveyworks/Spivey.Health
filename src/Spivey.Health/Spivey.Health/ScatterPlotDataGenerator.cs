@@ -24,9 +24,9 @@
 
 namespace Spivey.Health
 {
-    public static class ScatterPlotDataGenerator<T>
+    public static class ScatterPlotDataGenerator
     {
-        private static Dictionary<AggregateOperator, Func<IEnumerable<double>, double>> Aggregators = new Dictionary<AggregateOperator, Func<IEnumerable<double>, double>>()
+        private static Dictionary<AggregateOperator, Func<IEnumerable<double>, double>> DoubleAggregators = new Dictionary<AggregateOperator, Func<IEnumerable<double>, double>>()
             {
                 { AggregateOperator.Sum, values => values.Sum() },
                 { AggregateOperator.Average, values => values.Average() },
@@ -34,7 +34,15 @@ namespace Spivey.Health
                 { AggregateOperator.Max, values => values.Max() },
             };
 
-        public static ScatterPlotData<T> AggregateByDay(DateTime startDateRange,
+        private static Dictionary<AggregateOperator, Func<IEnumerable<double?>, double?>> NullableDoubleAggregators = new Dictionary<AggregateOperator, Func<IEnumerable<double?>, double?>>()
+            {
+                { AggregateOperator.Sum, values => values.Sum() },
+                { AggregateOperator.Average, values => values.Average() },
+                { AggregateOperator.Min, values => values.Min() },
+                { AggregateOperator.Max, values => values.Max() },
+            };
+
+        public static ScatterPlotData<double> AggregateByDay(DateTime startDateRange,
                                               DateTime endDateRange,
                                               string labelX,
                                               string typeX,
@@ -54,9 +62,9 @@ namespace Spivey.Health
                 var date = startDateRange.AddDays(a);
 
                 //get the values for the day from each data list.
-                var valX = Aggregators[aggregateOperator](dataListX.Values.Where(i => i.Date == date.Date)
+                var valX = DoubleAggregators[aggregateOperator](dataListX.Values.Where(i => i.Date == date.Date)
                                                     .Select(i => i.Value));
-                var valY = Aggregators[aggregateOperator](dataListY.Values.Where(i => i.Date == date.Date)
+                var valY = DoubleAggregators[aggregateOperator](dataListY.Values.Where(i => i.Date == date.Date)
                                                     .Select(i => i.Value));
 
                 values.Add(new ScatterPlotDataPoint()
@@ -72,14 +80,59 @@ namespace Spivey.Health
                 TypeY = typeY,
                 Values = values.ToArray()
             };
-            return new ScatterPlotData<T>()
+            return new ScatterPlotData<double>()
             {
                 Labels = new string[] { labelX, labelY },
                 DataSets = new ScatterPlotDataSet[] { dataSet }
             };
         }
 
-        public static ScatterPlotData<T> AggregateByMonth(DateTime startDateRange,
+        public static ScatterPlotData<double?> AggregateByDay(DateTime startDateRange,
+                                              DateTime endDateRange,
+                                              string labelX,
+                                              string typeX,
+                                              DataList<double?> dataListX,
+                                              string labelY,
+                                              string typeY,
+                                              DataList<double?> dataListY,
+                                              AggregateOperator aggregateOperator)
+        {
+            //get the number of days between the start and end date.
+            var numberOfDaysBetweenStartAndEnd = endDateRange.Subtract(startDateRange).TotalDays + 1;
+            var values = new List<ScatterPlotDataPoint>();
+
+            //loop through each day from start to end.
+            for (var a = 0; a < numberOfDaysBetweenStartAndEnd; a++)
+            {
+                var date = startDateRange.AddDays(a);
+
+                //get the values for the day from each data list.
+                var valX = NullableDoubleAggregators[aggregateOperator](dataListX.Values.Where(i => i.Date == date.Date && i.Value != null)
+                                                    .Select(i => i.Value));
+                var valY = NullableDoubleAggregators[aggregateOperator](dataListY.Values.Where(i => i.Date == date.Date && i.Value != null)
+                                                    .Select(i => i.Value));
+
+                values.Add(new ScatterPlotDataPoint()
+                {
+                    Date = date,
+                    X = valX,
+                    Y = valY
+                });
+            }
+            var dataSet = new ScatterPlotDataSet()
+            {
+                TypeX = typeX,
+                TypeY = typeY,
+                Values = values.ToArray()
+            };
+            return new ScatterPlotData<double?>()
+            {
+                Labels = new string[] { labelX, labelY },
+                DataSets = new ScatterPlotDataSet[] { dataSet }
+            };
+        }
+
+        public static ScatterPlotData<double> AggregateByMonth(DateTime startDateRange,
                                               DateTime endDateRange,
                                               string labelX,
                                               string typeX,
@@ -101,9 +154,9 @@ namespace Spivey.Health
                 var date = startDateRange.AddDays(a);
 
                 //get the values for the day from each data list.
-                var valX = Aggregators[dayAggregateOperator](dataListX.Values.Where(i => i.Date == date.Date)
+                var valX = DoubleAggregators[dayAggregateOperator](dataListX.Values.Where(i => i.Date == date.Date)
                                                     .Select(i => i.Value));
-                var valY = Aggregators[dayAggregateOperator](dataListY.Values.Where(i => i.Date == date.Date)
+                var valY = DoubleAggregators[dayAggregateOperator](dataListY.Values.Where(i => i.Date == date.Date)
                                                     .Select(i => i.Value));
 
                 dayValues.Add(new ScatterPlotDataPoint()
@@ -120,9 +173,9 @@ namespace Spivey.Health
                 var monthDate = startDateRange.AddMonths(m);
 
                 //get the values for the month from each data list.
-                var valX = Aggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month)
+                var valX = DoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month)
                                                     .Select(i => i.X.GetValueOrDefault(0)));
-                var valY = Aggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month)
+                var valY = DoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month)
                                                     .Select(i => i.Y.GetValueOrDefault(0)));
 
                 monthValues.Add(new ScatterPlotDataPoint()
@@ -138,7 +191,73 @@ namespace Spivey.Health
                 TypeY = typeY,
                 Values = monthValues.ToArray()
             };
-            return new ScatterPlotData<T>()
+            return new ScatterPlotData<double>()
+            {
+                Labels = new string[] { labelX, labelY },
+                DataSets = new ScatterPlotDataSet[] { dataSet }
+            };
+        }
+
+        public static ScatterPlotData<double?> AggregateByMonth(DateTime startDateRange,
+                                              DateTime endDateRange,
+                                              string labelX,
+                                              string typeX,
+                                              DataList<double?> dataListX,
+                                              string labelY,
+                                              string typeY,
+                                              DataList<double?> dataListY,
+                                              AggregateOperator dayAggregateOperator,
+                                              AggregateOperator monthAggregateOperator)
+        {
+            //get the number of days between the start and end date.
+            var numberOfDaysBetweenStartAndEnd = endDateRange.Subtract(startDateRange).TotalDays + 1;
+            var numberOfMonthsBetweenStartAndEnd = GetUniqueMonthsBetween(startDateRange, endDateRange);
+            var dayValues = new List<ScatterPlotDataPoint>();
+
+            //loop through each day from start to end.
+            for (var a = 0; a < numberOfDaysBetweenStartAndEnd; a++)
+            {
+                var date = startDateRange.AddDays(a);
+
+                //get the values for the day from each data list.
+                var valX = NullableDoubleAggregators[dayAggregateOperator](dataListX.Values.Where(i => i.Date == date.Date && i.Value != null)
+                                                    .Select(i => i.Value));
+                var valY = NullableDoubleAggregators[dayAggregateOperator](dataListY.Values.Where(i => i.Date == date.Date && i.Value != null)
+                                                    .Select(i => i.Value));
+
+                dayValues.Add(new ScatterPlotDataPoint()
+                {
+                    Date = date,
+                    X = valX,
+                    Y = valY
+                });
+            }
+
+            var monthValues = new List<ScatterPlotDataPoint>();
+            for (var m = 0; m < numberOfMonthsBetweenStartAndEnd; m++)
+            {
+                var monthDate = startDateRange.AddMonths(m);
+
+                //get the values for the month from each data list.
+                var valX = NullableDoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month && i.X != null)
+                                                    .Select(i => i.X));
+                var valY = NullableDoubleAggregators[monthAggregateOperator](dayValues.Where(i => i.Date.Year == monthDate.Date.Year && i.Date.Month == monthDate.Date.Month && i.Y != null)
+                                                    .Select(i => i.Y));
+
+                monthValues.Add(new ScatterPlotDataPoint()
+                {
+                    Date = new DateTime(monthDate.Year, monthDate.Month, 1),
+                    X = valX,
+                    Y = valY
+                });
+            }
+            var dataSet = new ScatterPlotDataSet()
+            {
+                TypeX = typeX,
+                TypeY = typeY,
+                Values = monthValues.ToArray()
+            };
+            return new ScatterPlotData<double?>()
             {
                 Labels = new string[] { labelX, labelY },
                 DataSets = new ScatterPlotDataSet[] { dataSet }
